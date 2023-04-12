@@ -2,7 +2,6 @@ import { MouseEvent, useState } from 'react'
 import { object, string, InferType } from 'yup'
 import { useForm } from 'react-hook-form'
 import {
-    Typography,
     Box,
     TextField,
     Button,
@@ -20,6 +19,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { yupResolver } from '@hookform/resolvers/yup'
 import AlertCustom from './components/Alert'
 import FormHelperText from '@mui/material/FormHelperText'
+import CustomAvatar from './components/CustomAvatar'
 
 const loginUserSchema = object({
     email: string().email('E-mail inválido').required('O e-mail é obrigatório'),
@@ -60,7 +60,6 @@ function App() {
 
         setAlert(false)
     }
-
     const handleClickShowPassword = () => setShowPassword((show) => !show)
 
     const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
@@ -72,16 +71,24 @@ function App() {
     }
     return (
         <Box
-            width={'500px'}
-            gap={2}
+            display="flex"
+            justifyContent="center"
             alignItems={'center'}
-            justifyItems={'center'}
+            height={800}
         >
-            <Box flex={1} gap={2}>
+            <Box
+                width="500px"
+                display="flex"
+                flexDirection="column"
+                p={2}
+                alignItems="center"
+                borderRadius={2}
+                border={1}
+                bgcolor="#f5f5f5"
+                gap={2}
+            >
+                <CustomAvatar />
                 <form onSubmit={handleSubmit(handlerLogin)}>
-                    <Typography variant="h3" color="initial">
-                        Login
-                    </Typography>
                     <Stack direction="column" spacing={2}>
                         <TextField
                             error={!!errors.email}
